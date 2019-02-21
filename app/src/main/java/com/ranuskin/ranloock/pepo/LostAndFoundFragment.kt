@@ -65,6 +65,7 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback {
         ) { task: Task<Location> ->
             if (task.isSuccessful){
                 mLastKnownLocation = task.result
+
         }
     }
     }
