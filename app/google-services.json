@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "163379105111",
+    "firebase_url": "https://pepo-13c53.firebaseio.com",
+    "project_id": "pepo-13c53",
+    "storage_bucket": "pepo-13c53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163379105111:android:92b3e1007669a4c5",
+        "android_client_info": {
+          "package_name": "com.ranuskin.ranloock.pepo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163379105111-tejk8db9aujl1nglmq0jo5fl1ev63cae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ranuskin.ranloock.pepo",
+            "certificate_hash": "7819b45389072d7af5387632df1fa9d10656bef4"
+          }
+        },
+        {
+          "client_id": "163379105111-fadnkoa66f61g4iqeehfjvhnlhjechk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArGr0PiCXFJQjcX6-ShWDdBTpNg7j-1y0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163379105111-fadnkoa66f61g4iqeehfjvhnlhjechk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

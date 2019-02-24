@@ -32,6 +32,8 @@ import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import android.Manifest
+import android.app.Activity
+import android.app.PendingIntent.getActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -57,10 +59,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        supportFragmentManager.beginTransaction().replace(R.id.container, LostAndFoundFragment()).commit()
+
     }
 
 
+
+    fun refreshFragment(){
+        supportFragmentManager.beginTransaction().replace(R.id.container, LostAndFoundFragment()).commit()
+    }
 
     private fun checkMapServices(): Boolean {
         if (isServicesOK()) {
@@ -69,6 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         return false
+
     }
 
     override fun onResume() {
@@ -116,6 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             mLocationPermissionGranted = true
+            supportFragmentManager.beginTransaction().replace(R.id.container, LostAndFoundFragment()).commit()
         } else {
             ActivityCompat.requestPermissions(
                 this,
@@ -156,6 +164,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true
+                    refreshFragment()
                 }
             }
         }
