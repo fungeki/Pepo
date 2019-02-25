@@ -37,17 +37,8 @@ import java.util.concurrent.ExecutionException
 
 
 class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnClusterItemInfoWindowClickListener<ClusterMarker>{
-    override fun onClusterItemInfoWindowClick(p0: ClusterMarker?) {
-        println("${p0!!.title} was clicked")
-    }
 
-//
-//    override fun onMarkerClick(p0: Marker?): Boolean {
-//        if (p0!!.isInfoWindowShown){
-//            println("shown")
-//        }
-//        return false
-//    }
+
 
 
     private lateinit var locationCallback: LocationCallback
@@ -69,7 +60,11 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
 
     private var mLocationPermissionGranted = true
     val doge = LostPet("Doge Mcdoggens", 32.0750224, 34.7727508, "https://i.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg"
-    , "02/03/19")
+    , "02/03/19", "לוקו שלנו נעלם לפני שלושה ימים רועה גרמני שחור!\n" +
+                "אבד באיזור דימונה!\n" +
+                "בבקשה מי שראה או שמע שידבר איתי!\n" +
+                "פרס כספי למוצא!!!!", "doge next door", "too old","054-3210987"
+        , "So Owner")
     override fun onMapReady(p0: GoogleMap?) {
 
         mMap = p0
@@ -91,7 +86,15 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
         markerFactory()
     }
 
-
+    override fun onClusterItemInfoWindowClick(p0: ClusterMarker?) {
+        println("${p0!!.title} was clicked")
+        val bundle = Bundle()
+        bundle.putSerializable("pet",doge)
+        val ft = activity!!.supportFragmentManager.beginTransaction().addToBackStack(null)
+        val detailsForLostFoundFragment = DetailsForLostFoundFragment()
+        detailsForLostFoundFragment.arguments = bundle
+        ft.replace(R.id.container, detailsForLostFoundFragment).commit()
+    }
 
     private fun setUpClusterer(){
         mClusterManager = ClusterManager(activity!!,mMap!!)
@@ -113,13 +116,6 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
             var bmImg = Ion.with(context)
                 .load(doge.imageURL).asBitmap().get()
             val latlng = LatLng(doge.lat, doge.lng)
-//            val dogeLocation = MarkerOptions().position(latlng).title(doge.name)
-//                .snippet("was lost at ${doge.date}").flat(true)
-//            val mapMarker = mMap!!.addMarker(
-//                dogeLocation
-//                    .icon(BitmapDescriptorFactory.fromBitmap(bmImg))
-//            )
-//            mapMarker.tag = 0
             val clusterItem = ClusterMarker(latlng,doge.name,"was lost on ${doge.date}",bmImg,0)
             mClusterManager.addItem(clusterItem)
 
