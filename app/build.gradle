@@ -42,4 +42,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.koushikdutta.ion:ion:2.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //firestore
+    implementation 'com.google.firebase:firebase-firestore:18.0.1'
 }
