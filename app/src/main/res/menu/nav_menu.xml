@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/bot_nav_home"
+            android:icon="@drawable/ic_lost_and_found"
+            android:title="אבדו ונמצאו"/>
+    <item
+            android:id="@+id/bot_nav_report"
+            android:icon="@drawable/ic_report"
+            android:title="דווח"/>
+
+    <item
+            android:id="@+id/bot_nav_garbage"
+            android:title=""/>
+    <item
+            android:id="@+id/bot_nav_shop"
+            android:icon="@drawable/ic_store"
+            android:title="חנויות"/>
+    <item
+            android:id="@+id/bot_nav_vet"
+            android:icon="@drawable/ic_find_vet"
+            android:title="וטרינר"/>
+</menu>

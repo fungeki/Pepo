@@ -1,7 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".SignUpFragment">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".SignUpFragment">
+    <com.google.android.gms.common.SignInButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_sign_up_headline" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_headline" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" app:layout_constraintBottom_toTopOf="@+id/guideline3"/>
+    <TextView
+            android:text="בכדי לשמור על פרטיך"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_sign_in_header"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_sign_up_headline"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_headline"
+            app:layout_constraintHorizontal_bias="0.474"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_header_textview"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/fragment_sign_up_headline"
+                                          android:orientation="vertical"
+                                          app:layout_constraintGuide_percent="0.5"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline3"
+                                          android:orientation="horizontal"
+                                          app:layout_constraintGuide_percent="0.5"/>
+    <TextView
+            android:text="נא התחברו למערכת"
+            android:fontFamily="sans-serif"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_sign_up_header_textview"
+            app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_headline" android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_sign_up_headline" android:layout_marginBottom="16dp"/>
+    <TextView
+            android:text="החיבור בהסכמה לתנאי השימוש"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" app:layout_constraintEnd_toStartOf="@+id/fragment_sign_up_headline"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_headline"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/button"/>
 </android.support.constraint.ConstraintLayout>

@@ -57,14 +57,21 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
     var mFusedLocationProviderClient: FusedLocationProviderClient? = null
     var mLastKnownLocation: Location? = null
     var mMap: GoogleMap? = null
-
     private var mLocationPermissionGranted = true
-    val doge = LostPet("Doge Mcdoggens", 32.0750224, 34.7727508, "https://i.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg"
+    val doge = LostPet("דוג מקדוקנס", 32.0750224, 34.7727508, "https://i.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg"
     , "02/03/19", "לוקו שלנו נעלם לפני שלושה ימים רועה גרמני שחור!\n" +
                 "אבד באיזור דימונה!\n" +
                 "בבקשה מי שראה או שמע שידבר איתי!\n" +
                 "פרס כספי למוצא!!!!", "doge next door", "too old","054-3210987"
         , "So Owner")
+    val doge2 = LostPet("דוג גת יו", 31.6094991, 34.7708247, "https://i.kym-cdn.com/entries/icons/original/000/010/041/internet-memes-fetch-my-mind-its-blown-away.jpg"
+        , "02/03/19", "לוקו שלנו נעלם לפני שלושה ימים רועה גרמני שחור!\n" +
+                "אבד באיזור דימונה!\n" +
+                "בבקשה מי שראה או שמע שידבר איתי!\n" +
+                "פרס כספי למוצא!!!!", "doge next door", "too old","054-3210987"
+        , "So Owner")
+    val doges = mutableListOf<LostPet>()
+
     override fun onMapReady(p0: GoogleMap?) {
 
         mMap = p0
@@ -89,7 +96,7 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
     override fun onClusterItemInfoWindowClick(p0: ClusterMarker?) {
         println("${p0!!.title} was clicked")
         val bundle = Bundle()
-        bundle.putSerializable("pet",doge)
+        bundle.putSerializable("pet",doges[p0.serial])
         val ft = activity!!.supportFragmentManager.beginTransaction().addToBackStack(null)
         val detailsForLostFoundFragment = DetailsForLostFoundFragment()
         detailsForLostFoundFragment.arguments = bundle
@@ -113,13 +120,25 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
     private fun markerFactory(){
 
         try {
-            var bmImg = Ion.with(context)
-                .load(doge.imageURL).asBitmap().get()
-            val latlng = LatLng(doge.lat, doge.lng)
-            val clusterItem = ClusterMarker(latlng,doge.name,"was lost on ${doge.date}",bmImg,0)
-            mClusterManager.addItem(clusterItem)
 
-            clusterMarkers.add(clusterItem)
+            var iterator = 0
+            for (mDoge in doges){
+                var bmImg = Ion.with(context)
+                    .load(mDoge.imageURL).asBitmap().get()
+                val latlng = LatLng(mDoge.lat, mDoge.lng)
+                val clusterItem = ClusterMarker(latlng,mDoge.name,"נראה לאחרונה " + "${mDoge.date}",bmImg,iterator)
+                mClusterManager.addItem(clusterItem)
+
+                clusterMarkers.add(clusterItem)
+                iterator += 1
+            }
+//            var bmImg = Ion.with(context)
+//                .load(doge.imageURL).asBitmap().get()
+//            val latlng = LatLng(doge.lat, doge.lng)
+//            val clusterItem = ClusterMarker(latlng,doge.name,"was lost on ${doge.date}",bmImg,0)
+//            mClusterManager.addItem(clusterItem)
+//
+//            clusterMarkers.add(clusterItem)
 
         } catch (e: InterruptedException) {
             e.printStackTrace()
@@ -148,6 +167,8 @@ class LostAndFoundFragment : Fragment(), OnMapReadyCallback, ClusterManager.OnCl
                 mLastKnownLocation = p0.lastLocation
             }
         }
+        doges.add(doge)
+        doges.add(doge2)
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
         createLocationRequest()
         val mapFragment = childFragmentManager.findFragmentById(R.id.lost_and_found_map) as SupportMapFragment?

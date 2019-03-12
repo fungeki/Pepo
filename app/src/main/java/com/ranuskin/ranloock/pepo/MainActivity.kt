@@ -1,42 +1,31 @@
 package com.ranuskin.ranloock.pepo
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.annotation.NonNull
 import android.widget.Toast
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.ConnectionResult
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.location.LocationManager
-import android.content.Context.LOCATION_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
 import android.content.DialogInterface
-import android.support.v4.app.ActivityCompat.startActivityForResult
-import android.support.v4.app.FragmentActivity
+import android.net.Uri
+import android.os.Build
+import android.support.annotation.RequiresApi
+import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AlertDialog
-import android.util.Log
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import android.Manifest
-import android.app.Activity
-import android.app.PendingIntent.getActivity
+import android.view.MenuItem
+import android.view.Window
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
+//, NavigationView.OnNavigationItemSelectedListener
+class MainActivity : AppCompatActivity(){
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val TAG = "MainActivity"
 
@@ -46,19 +35,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val PERMISSIONS_REQUEST_ENABLE_GPS = 9003
 
 
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        window.statusBarColor = resources.getColor(R.color.colorPrimaryDark,null)
+        bottom_nav_bar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        join_now_circle.setOnClickListener{
+            val pepoSignInLink = "https://goo.gl/forms/jrlMjWEZMm70NYkG2"
+            val linkIntent = Intent(Intent.ACTION_VIEW)
+            linkIntent.data = Uri.parse(pepoSignInLink)
+            startActivity(linkIntent)
+        }
+
+//        setSupportActionBar(toolbar)
 
 
-        val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
+//        val toggle = ActionBarDrawerToggle(
+//            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+//        )
+        //drawer_layout.addDrawerListener(toggle)
+        //toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        //nav_view.setNavigationItemSelectedListener(this)
 
     }
 
@@ -87,6 +88,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 getLocationPermission()
             }
         }
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.bot_nav_home -> {
+                supportFragmentManager.beginTransaction().replace(R.id.container,LostAndFoundFragment()).commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bot_nav_vet -> {
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bot_nav_report -> {
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bot_nav_shop ->{
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
     }
 
     private fun buildAlertMessageNoGps() {
@@ -184,51 +204,61 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
     }
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_home -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
 
-            }
-            R.id.nav_vet_chat -> {
 
-            }
-            R.id.nav_manage -> {
 
-            }
-            R.id.nav_share -> {
 
-            }
-        }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
-    }
+
+
+//    override fun onBackPressed() {
+//        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+//            drawer_layout.closeDrawer(GravityCompat.START)
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.main, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        when (item.itemId) {
+//            R.id.action_settings -> return true
+//            else -> return super.onOptionsItemSelected(item)
+//        }
+//    }
+
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        // Handle navigation view item clicks here.
+//        when (item.itemId) {
+//            R.id.nav_home -> {
+//                // Handle the camera action
+//            }
+//            R.id.nav_gallery -> {
+//
+//            }
+//            R.id.nav_vet_chat -> {
+//
+//            }
+//            R.id.nav_manage -> {
+//
+//            }
+//            R.id.nav_share -> {
+//
+//            }
+//        }
+//
+//        drawer_layout.closeDrawer(GravityCompat.START)
+//        return true
+//    }
 }

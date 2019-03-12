@@ -1,58 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+
+                                                 android:layout_height="wrap_content"
                                                  tools:context=".DetailsForLostFoundFragment">
-    <android.support.design.widget.AppBarLayout android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-    android:id="@+id/fragment_details_for_lost_found_appbar_layout"
-    style="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <android.support.design.widget.CollapsingToolbarLayout android:layout_width="match_parent"
-                                                               android:layout_height="wrap_content"
-                                                               app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-                                                               app:contentScrim="?attr/colorPrimary"
-                                                               app:expandedTitleTextAppearance="@android:color/transparent"
-                                                               android:fitsSystemWindows="false">
-
-            <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                         android:layout_height="wrap_content">
-
-                <ImageView
-                        android:src="@drawable/gil_daniel"
-                        android:layout_width="0dp"
-                        android:layout_height="250dp"
-                        android:scaleType="centerCrop"
-                        android:contentDescription="lost pet image"
-                        android:id="@+id/fragment_details_for_lost_found_pet_imageview"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-            </android.support.constraint.ConstraintLayout>
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:tools="http://schemas.android.com/tools"
-                                                     android:layout_width="match_parent"
-                                                     android:layout_height="wrap_content">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:src="@drawable/gil_daniel"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="lost pet image"
+                    android:id="@+id/fragment_details_for_lost_found_pet_imageview"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_for_lost_found_pet_main_init_textview"/>
 
             <TextView
                     android:text="Pet Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fragment_details_pet_name_textview" app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="8dp"
-                    android:textSize="24sp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/fragment_details_pet_name_textview"
                     app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline"/>
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintHorizontal_bias="0.362" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_pet_name_headline_textview"
+                    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
             <android.support.constraint.Guideline android:layout_width="wrap_content"
                                                   android:layout_height="wrap_content"
                                                   android:id="@+id/guideline"
@@ -62,27 +44,31 @@
                     android:text="Was lost at (date)"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fragment_details_lost_date" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_pet_name_textview"
+                    android:id="@+id/fragment_details_lost_date"
                     app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline"/>
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_for_lost_pet_date_headline"/>
             <TextView
                     android:text="Was lost (where)"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fragment_details_lost_location"
                     app:layout_constraintStart_toStartOf="@+id/guideline"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_date"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"/>
+                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_bias="0.4" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_found_place_headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"/>
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fragment_details_lost_description" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_location"
+                    android:id="@+id/fragment_details_lost_description"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
-                    android:text="description"/>
+                    android:text="description"
+                    app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_found_details_headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"/>
             <TextView
                     android:text="Call Me : Itzik"
                     android:layout_width="wrap_content"
@@ -90,7 +76,8 @@
                     android:id="@+id/fragment_details_lost_owner_name_textview" android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_description"
                     app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline"/>
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"/>
             <TextView
                     android:text="phone number"
                     android:layout_width="wrap_content"
@@ -98,7 +85,58 @@
                     android:id="@+id/fragment_details_lost_owner_number" android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_owner_name_textview"
                     app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline" android:layout_marginBottom="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"/>
+            <TextView
+                    android:text="כותרת הלך לאיבוד"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_details_for_lost_found_pet_main_init_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+            <TextView
+                    android:text="שם"
+                    android:fontFamily="sans-serif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_details_pet_name_headline_textview" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_for_lost_found_pet_imageview"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+            <TextView
+                    android:text="הלך לאיבוד בתאריך"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_details_for_lost_pet_date_headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_pet_name_textview"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline"
                     app:layout_constraintStart_toStartOf="@+id/guideline"/>
+            <TextView
+                    android:text="נראה לאחרונה"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_details_lost_found_place_headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_date"/>
+            <TextView
+                    android:text="תיאור"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_details_lost_found_details_headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_details_lost_location"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

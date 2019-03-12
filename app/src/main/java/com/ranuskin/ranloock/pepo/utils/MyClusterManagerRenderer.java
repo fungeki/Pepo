@@ -2,6 +2,7 @@ package com.ranuskin.ranloock.pepo.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,6 +14,7 @@ import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 import com.ranuskin.ranloock.pepo.Objects.ClusterMarker;
+import com.ranuskin.ranloock.pepo.R;
 
 public class MyClusterManagerRenderer extends DefaultClusterRenderer<ClusterMarker> {
     private final IconGenerator iconGenerator;
@@ -30,6 +32,8 @@ public class MyClusterManagerRenderer extends DefaultClusterRenderer<ClusterMark
         imageView.setLayoutParams(new ViewGroup.LayoutParams(markerWidth,markerHeight));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         iconGenerator.setContentView(imageView);
+//        Drawable myIcon = context.getResources().getDrawable( R.drawable.ic_found );
+//        iconGenerator.setBackground(myIcon);
 
     }
 

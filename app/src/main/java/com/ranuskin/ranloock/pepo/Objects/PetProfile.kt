@@ -14,7 +14,8 @@ class PetProfile(
     var phone: String,
     var petName: String,
     var lat: Double,
-    var lng: Double
+    var lng: Double,
+    var dog_uid: String
 ){
     fun toHashMap(): HashMap<String, Any>{
         var hashMap = hashMapOf<String, Any>()
@@ -30,6 +31,7 @@ class PetProfile(
         hashMap["pet_name"] = this.petName
         hashMap["lat"] = this.lat
         hashMap["lng"] = this.lng
+        hashMap["dog_uid"] = this.dog_uid
         return hashMap
     }
 }
